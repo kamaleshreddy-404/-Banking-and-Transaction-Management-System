@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Rounded Brand Shield -->
+  <rect width="64" height="64" rx="14" fill="#10213A" />
+  <!-- Geometric 'F' Pathway -->
+  <path d="M22 14 H46 V22 H30 C27.5 22 26 23.5 26 26 V29 H42 V36 H26 V50 H18 V18 C18 15.8 19.8 14 22 14 Z" fill="url(#favGrad)" />
+  <!-- Connected Transaction Nodes -->
+  <circle cx="46" cy="18" r="4.5" fill="#14B8A6" />
+  <circle cx="42" cy="32.5" r="4" fill="#38BDF8" />
+  <defs>
+    <linearGradient id="favGrad" x1="18" y1="14" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2563EB" />
+      <stop offset="100%" stop-color="#14B8A6" />
+    </linearGradient>
+  </defs>
+</svg>

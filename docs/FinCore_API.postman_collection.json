@@ -1,0 +1,261 @@
+{
+  "info": {
+    "_postman_id": "fincore-banking-collection-v1",
+    "name": "FinCore Core Banking REST API",
+    "description": "Postman collection for FinCore – Simulated Banking & Transaction Management System.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080/api/v1",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Authentication & Users",
+      "item": [
+        {
+          "name": "Login (Customer)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.token) {",
+                  "    pm.collectionVariables.set('token', jsonData.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"aarav.sharma@fincore.demo\",\n  \"password\": \"Password@123\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/auth/login", "host": ["{{baseUrl}}"], "path": ["auth", "login"] }
+          }
+        },
+        {
+          "name": "Login (Admin)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.token) {",
+                  "    pm.collectionVariables.set('token', jsonData.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@fincore.demo\",\n  \"password\": \"Admin@12345\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/auth/login", "host": ["{{baseUrl}}"], "path": ["auth", "login"] }
+          }
+        },
+        {
+          "name": "Register New Customer",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Rahul Verma\",\n  \"email\": \"rahul.verma@example.com\",\n  \"password\": \"Password@123\",\n  \"phone\": \"+91 98765 00000\",\n  \"accountType\": \"SAVINGS\",\n  \"city\": \"Mumbai\",\n  \"state\": \"Maharashtra\",\n  \"postalCode\": \"400001\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/auth/register", "host": ["{{baseUrl}}"], "path": ["auth", "register"] }
+          }
+        },
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/users/profile", "host": ["{{baseUrl}}"], "path": ["users", "profile"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Accounts",
+      "item": [
+        {
+          "name": "Get All Accounts",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/accounts", "host": ["{{baseUrl}}"], "path": ["accounts"] }
+          }
+        },
+        {
+          "name": "Get Account by ID",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/accounts/1", "host": ["{{baseUrl}}"], "path": ["accounts", "1"] }
+          }
+        },
+        {
+          "name": "Get Double-Entry Account Ledger",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{baseUrl}}/accounts/1/ledger?page=0&size=15",
+              "host": ["{{baseUrl}}"],
+              "path": ["accounts", "1", "ledger"],
+              "query": [
+                { "key": "page", "value": "0" },
+                { "key": "size", "value": "15" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Transfers & Idempotency",
+      "item": [
+        {
+          "name": "Execute Virtual Fund Transfer",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Idempotency-Key", "value": "tx_demo_req_1001" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sourceAccountId\": 1,\n  \"destinationAccountNumber\": \"FC10020001\",\n  \"amount\": 1500.00,\n  \"currencyCode\": \"INR\",\n  \"description\": \"Simulated inter-account transfer\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/transfers", "host": ["{{baseUrl}}"], "path": ["transfers"] }
+          }
+        },
+        {
+          "name": "Get User Transfer Limits",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/transfers/limits", "host": ["{{baseUrl}}"], "path": ["transfers", "limits"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Transactions & History",
+      "item": [
+        {
+          "name": "Get Filtered Transactions",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{baseUrl}}/transactions?page=0&size=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["transactions"],
+              "query": [
+                { "key": "page", "value": "0" },
+                { "key": "size", "value": "10" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Transaction Receipt",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/transactions/1/receipt", "host": ["{{baseUrl}}"], "path": ["transactions", "1", "receipt"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Beneficiaries",
+      "item": [
+        {
+          "name": "Get Beneficiaries",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/beneficiaries", "host": ["{{baseUrl}}"], "path": ["beneficiaries"] }
+          }
+        },
+        {
+          "name": "Add Beneficiary",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"beneficiaryName\": \"Diya Patel\",\n  \"beneficiaryAccountNumber\": \"FC10020001\",\n  \"nickname\": \"Sister\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/beneficiaries", "host": ["{{baseUrl}}"], "path": ["beneficiaries"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "6. Administration (Role: ADMIN)",
+      "item": [
+        {
+          "name": "Admin Dashboard Stats",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/admin/stats", "host": ["{{baseUrl}}"], "path": ["admin", "stats"] }
+          }
+        },
+        {
+          "name": "Admin Ledger Oversight",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/admin/ledger?page=0&size=20", "host": ["{{baseUrl}}"], "path": ["admin", "ledger"] }
+          }
+        },
+        {
+          "name": "Admin Audit Logs",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/admin/audit-logs?page=0&size=20", "host": ["{{baseUrl}}"], "path": ["admin", "audit-logs"] }
+          }
+        },
+        {
+          "name": "Admin System Health Telemetry",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/admin/system/health", "host": ["{{baseUrl}}"], "path": ["admin", "system", "health"] }
+          }
+        }
+      ]
+    }
+  ]
+}

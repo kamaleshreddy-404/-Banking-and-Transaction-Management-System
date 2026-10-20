@@ -1,19 +1,30 @@
 @import './variables.css';
 
+/* ==========================================================================
+   CSS Reset & Base Global Styles
+   ========================================================================== */
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html, body {
-  height: 100%;
-  font-family: var(--font-family);
-  background-color: var(--bg-app);
-  color: var(--text-main);
-  line-height: 1.5;
+html {
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  line-height: 1.55;
+  overflow-x: hidden;
 }
 
 #root {
@@ -22,21 +33,27 @@ html, body {
   flex-direction: column;
 }
 
+/* Typography Defaults */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  color: var(--text-main);
+  color: var(--text-primary);
   font-weight: 700;
+  letter-spacing: -0.02em;
   line-height: 1.25;
 }
 
+p {
+  color: var(--text-secondary);
+}
+
 a {
-  color: var(--color-blue);
+  color: var(--primary-color);
   text-decoration: none;
-  transition: color var(--transition-fast);
+  transition: all var(--transition-fast);
 }
 
 a:hover {
-  color: var(--color-blue-hover);
+  color: var(--primary-hover);
 }
 
 button {
@@ -44,14 +61,45 @@ button {
   cursor: pointer;
   border: none;
   background: none;
+  outline: none;
 }
 
 input, select, textarea {
   font-family: inherit;
   font-size: 0.95rem;
+  color: var(--text-primary);
 }
 
-/* Animations & Transitions */
+/* Containers */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* Modern Minimalist Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Keyframe Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -63,30 +111,32 @@ input, select, textarea {
   }
 }
 
-@keyframes floatGentle {
-  0%, 100% {
-    transform: translateY(0px);
+@keyframes pulseBeacon {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
   }
-  50% {
-    transform: translateY(-8px);
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(245, 158, 11, 0);
   }
-}
-
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 0 8px rgba(37, 99, 235, 0);
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
   }
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-.animate-float {
-  animation: floatGentle 5s ease-in-out infinite;
+.spin {
+  animation: spin 1s linear infinite;
 }
 
 /* Reduced Motion Override */
@@ -97,23 +147,4 @@ input, select, textarea {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-}
-
-/* Scrollbar Customization */
-::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
-}
-
-::-webkit-scrollbar-track {
-  background: #E2E8F0;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #94A3B8;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #64748B;
 }

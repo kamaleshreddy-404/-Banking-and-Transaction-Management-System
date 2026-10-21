@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>FinCore – Redirecting</title>
+    <script type="text/javascript">
+      // GitHub Pages SPA Hash Redirect
+      var segmentCount = 1; // repository path segments
+      var l = window.location;
+      var path = l.pathname.slice(1).split('/');
+      var repo = path[0];
+      var route = path.slice(segmentCount).join('/');
+      
+      var target = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + '/' + repo + '/#' + (route ? '/' + route : '') + (l.search ? l.search : '') + l.hash;
+      window.location.replace(target);
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to FinCore Core Banking System...</p>
+  </body>
+</html>

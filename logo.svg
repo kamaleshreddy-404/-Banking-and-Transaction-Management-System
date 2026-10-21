@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="shieldBg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#1E293B" />
+    </linearGradient>
+    <linearGradient id="primaryFlow" x1="16" y1="14" x2="48" y2="50" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="50%" stop-color="#2563EB" />
+      <stop offset="100%" stop-color="#10B981" />
+    </linearGradient>
+    <filter id="glow" x="-10%" y="-10%" width="120%" height="120%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#2563EB" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Base Rounded Hexagonal Shield -->
+  <rect width="64" height="64" rx="16" fill="url(#shieldBg)" />
+  <rect x="1" y="1" width="62" height="62" rx="15" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1.5" />
+
+  <!-- Dynamic Interlocked Core Pathway (F-Emblem) -->
+  <g filter="url(#glow)">
+    <path d="M20 16 H44 V23 H28 C26 23 25 24 25 26 V29 H40 V35 H25 V48 H18 V18 C18 16.9 18.9 16 20 16 Z" fill="url(#primaryFlow)" />
+  </g>
+
+  <!-- Connected Pulse Nodes -->
+  <circle cx="44" cy="19.5" r="4.5" fill="#10B981" stroke="#0F172A" stroke-width="1.5" />
+  <circle cx="40" cy="32" r="3.5" fill="#38BDF8" stroke="#0F172A" stroke-width="1.5" />
+  <circle cx="21.5" cy="48" r="3" fill="#6366F1" stroke="#0F172A" stroke-width="1" />
+</svg>

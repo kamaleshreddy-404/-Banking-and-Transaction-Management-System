@@ -1,0 +1,47 @@
+# FinCore GitIgnore
+
+# OS and IDE Files
+.DS_Store
+Thumbs.db
+*.swp
+*.bak
+.idea/
+*.iml
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Maven & Java Build Output
+backend/target/
+backend/.mvn/wrapper/maven-wrapper.jar
+*.class
+*.jar
+*.war
+*.ear
+*.log
+
+# Frontend & Node
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment and Secret Files
+.env
+backend/.env
+frontend/.env
+*.env
+application-local.yml
+
+# Temporary test/scratch files
+scratch/
+test-output/
+coverage/

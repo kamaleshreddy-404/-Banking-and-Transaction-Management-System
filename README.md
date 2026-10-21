@@ -18,6 +18,14 @@
 
 ---
 
+## 🌐 Live Interactive Demo & Repository
+
+- 🚀 **Live Demo on GitHub Pages:** [https://kamaleshreddy-404.github.io/-Banking-and-Transaction-Management-System/](https://kamaleshreddy-404.github.io/-Banking-and-Transaction-Management-System/)
+- 📦 **GitHub Source Repository:** [https://github.com/kamaleshreddy-404/-Banking-and-Transaction-Management-System](https://github.com/kamaleshreddy-404/-Banking-and-Transaction-Management-System)
+- 🧪 **Live Health Endpoint (Local):** `http://localhost:8080/actuator/health`
+
+---
+
 ## 1. Executive Summary & Key Highlights
 
 FinCore is an enterprise-patterned core banking application engineered to demonstrate production-grade Java full-stack competencies. Unlike simple CRUD prototypes, FinCore models real financial engineering challenges:
@@ -202,11 +210,11 @@ npm run dev
 
 | Role | Name | Email | Password | Pre-Configured Virtual Accounts |
 |---|---|---|---|---|
-| **ADMIN** | Super Admin | `admin@fincore.demo` | `Admin@12345` | Administrative Master Control |
-| **CUSTOMER** | Aarav Sharma | `aarav.sharma@fincore.demo` | `Password@123` | `FC10010001` (Savings: ₹45,250.00)<br>`FC10010002` (Current: ₹1,12,000.00) |
-| **CUSTOMER** | Diya Patel | `diya.patel@fincore.demo` | `Password@123` | `FC10020001` (Savings: ₹28,400.00) |
-| **CUSTOMER** | Vikram Malhotra | `vikram.malhotra@fincore.demo` | `Password@123` | `FC10030001` (Current: ₹2,35,000.00) |
-| **CUSTOMER** | Rohan Mehra | `rohan.mehra@fincore.demo` | `Password@123` | `FC10050001` (Savings: ₹6,500.00 - FROZEN) |
+| **ADMIN** | Super Admin | `admin@fincore.demo` | `Password@123` | Administrative Master Control |
+| **CUSTOMER** | Aarav Sharma | `aarav.sharma@fincore.demo` | `Password@123` | `ACC1000000001` (Savings: ₹97,500.00)<br>`ACC1000000002` (Current: ₹1,50,000.00) |
+| **CUSTOMER** | Priya Patel | `priya.patel@fincore.demo` | `Password@123` | `ACC1000000003` (Savings: ₹70,000.00)<br>`ACC1000000004` (Salary: ₹1,00,000.00) |
+| **CUSTOMER** | Rohit Verma | `rohit.verma@fincore.demo` | `Password@123` | `ACC1000000005` (Savings: ₹50,000.00) |
+| **CUSTOMER** | Ananya Iyer | `ananya.iyer@fincore.demo` | `Password@123` | `ACC1000000006` (Savings: ₹62,500.00) |
 
 *(One-click buttons on the login page autofill these credentials instantly).*
 

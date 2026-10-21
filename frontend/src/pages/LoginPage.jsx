@@ -83,14 +83,14 @@ const LoginPage = () => {
             <button
               type="button"
               className="btn btn-sm btn-outline-primary"
-              onClick={() => fillDemoCreds('diya.patel@fincore.demo', 'Password@123')}
+              onClick={() => fillDemoCreds('priya.patel@fincore.demo', 'Password@123')}
             >
-              Customer: Diya Patel
+              Customer: Priya Patel
             </button>
             <button
               type="button"
               className="btn btn-sm btn-outline-danger"
-              onClick={() => fillDemoCreds('admin@fincore.demo', 'Admin@12345')}
+              onClick={() => fillDemoCreds('admin@fincore.demo', 'Password@123')}
             >
               Admin: Super Admin
             </button>

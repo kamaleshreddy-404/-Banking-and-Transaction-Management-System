@@ -38,7 +38,7 @@ function handleMockRequest(config) {
   // Auth: Login
   if (url.includes('/auth/login') && method === 'post') {
     const isAdmin = data.email === 'admin@fincore.demo';
-    const name = isAdmin ? 'Super Admin' : (data.email.includes('diya') ? 'Diya Patel' : 'Aarav Sharma');
+    const name = isAdmin ? 'Super Admin' : (data.email.includes('priya') ? 'Priya Patel' : (data.email.includes('diya') ? 'Diya Patel' : 'Aarav Sharma'));
     const role = isAdmin ? 'ADMIN' : 'CUSTOMER';
     return {
       status: 200,
